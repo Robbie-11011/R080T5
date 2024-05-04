@@ -24,8 +24,8 @@ namespace RobotsTests
 			while (!end)
 			{
 				Console.Write("cmd >> ");
-				string input = "";
-				input = Console.ReadLine();
+				string input = Console.ReadLine();
+				
 				int mod = 0;
 				bool pass = false;
 
@@ -34,6 +34,7 @@ namespace RobotsTests
 					case "exit":
 						end = true;
 						break;
+
 					case "clear":
 						Console.Clear();
 						break;
