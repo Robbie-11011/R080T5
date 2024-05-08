@@ -26,9 +26,11 @@ namespace RobotsTests.item.consumable
 		/// <returns></returns>
         public override string Use(Entity target)
 		{
-			target.Heal(Mod, "heal");
+			string str = target.Heal(Mod, "heal");
 
-			return $"Restored {Mod} HP|1 {this.Name} consumed";
+			target.inventory.RemoveItem(this);
+
+			return $"{str}&1 {this.Name} consumed";
 		}
 
 		/// <summary>
@@ -37,7 +39,7 @@ namespace RobotsTests.item.consumable
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return string.Format("{0, -10} | kg: {1, -5} | qty: {2, -5}/{3, -5} | {4, -5}", Name, Weight, Qty, StackLimit, Mod);
+			return string.Format("{0, -10} | kg: {1, -5} | {2, -5}", Name, Weight, Mod);
 		}
 	}
 }

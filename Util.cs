@@ -1,6 +1,7 @@
 ﻿using RobotsTests.entity;
 using RobotsTests.entity.npc;
 using RobotsTests.entity.player;
+using RobotsTests.item;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,7 +40,7 @@ namespace RobotsLibrary
 
 		public static void SplitPrint(string str)
 		{
-			string del = "|";
+			string del = "&";
 
 			string[] lines = str.Split(del);
 
@@ -49,13 +50,13 @@ namespace RobotsLibrary
 			}
 		}
 
-		
+
 
 		public static int Rand(int max)
 		{
 			return new Random().Next(max + 1);
-		}		
-		
+		}
+
 		public static int Rand(int min, int max)
 		{
 			return new Random().Next(min, max + 1);
@@ -65,7 +66,15 @@ namespace RobotsLibrary
 		{
 			for (int i = 0; i < entities.Count; i++)
 			{
-				Println($"{i+1, -5} {entities[i].Name}");
+				Println($"{i + 1,-5} {entities[i].Name}");
+			}
+		}
+
+		public static void PrintList(List<IItem> items)
+		{
+			for (int i = 0; i < items.Count; i++)
+			{
+				Println($"{i + 1,-5} {items[i].ToString()}");
 			}
 		}
 
@@ -89,16 +98,47 @@ namespace RobotsLibrary
 				Console.Write("target index >> ");
 				pass = int.TryParse(Console.ReadLine(), out mod);
 
-				if (mod >= targets.Count || mod < 0)
+				if (mod >= targets.Count + 1 || mod < 0)
 				{
 					pass = false;
-					Util.SplitPrint("Out of range|Please try again");
+					Util.SplitPrint("Out of range&Please try again");
 				}
 			}
 
 			return (mod - 1);
 		}
-		
+
+		public static int GetUserIndex(List<IItem> items)
+		{
+			bool pass = false;
+			int mod = 0;
+
+
+			PrintList(items);
+
+
+			while (!pass)
+			{
+				Console.Write("target index >> ");
+				string str = Console.ReadLine();
+
+				if (str.ToLower().Equals("exit"))
+				{
+					return -1;
+				}
+
+				pass = int.TryParse(str, out mod);
+
+				if (mod >= items.Count + 1 || mod < 0)
+				{
+					pass = false;
+					Util.SplitPrint("Out of range&Please try again");
+				}
+			}
+
+			return (mod - 1);
+		}
+
 		public static int GetUserMod()
 		{
 			bool pass = false;

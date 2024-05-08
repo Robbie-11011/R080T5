@@ -10,13 +10,11 @@ namespace RobotsTests.item.consumable
 	/// <summary>
 	/// An abstract consumable item
 	/// </summary>
-	public abstract class Consumable : IItem, IStackable
+	public abstract class Consumable : IItem
 	{
 		public string Name { get; set; }
 		public double Weight { get; set; }
 		public bool Stackable { get; set; }
-		public int StackLimit { get; set; }
-        public int Qty { get; set; }
 
 		/// <summary>
 		/// Default Constructor
@@ -26,8 +24,6 @@ namespace RobotsTests.item.consumable
 			Name = "Generic Consumable";
 			Weight = 0;
 			Stackable = true;
-			StackLimit = 0;
-			Qty = 1;
 		}
 
 		/// <summary>
@@ -40,8 +36,6 @@ namespace RobotsTests.item.consumable
 			Name = name;
 			Weight = weight;
 			Stackable = true;
-			StackLimit = 8;
-			Qty = 1;
 		}			
 		
 		/// <summary> 
@@ -55,8 +49,6 @@ namespace RobotsTests.item.consumable
 			Name = name;
 			Weight = weight;
 			Stackable = true;
-			StackLimit = stackLimit;
-			Qty = 1;
 		}			
 		
 		/// <summary>
@@ -71,8 +63,6 @@ namespace RobotsTests.item.consumable
 			Name = name;
 			Weight = weight;
 			Stackable = stackable;
-			StackLimit = stackLimit;
-			Qty = 1;
 		}		
 
 		/// <summary>
@@ -87,8 +77,6 @@ namespace RobotsTests.item.consumable
 			Name = name;
 			Weight = weight;
 			Stackable = true;
-			StackLimit = stackLimit;
-			Qty = qty;
 		}
 
 		/// <summary>
@@ -104,7 +92,7 @@ namespace RobotsTests.item.consumable
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return string.Format("{0, -10} | kg: {1, -5} | qty: {2, -5}/{3, -5}", Name, Weight, Qty, StackLimit);
+			return string.Format("{0, -10} | kg: {1, -5}", Name, Weight);
 		}
 	}
 }

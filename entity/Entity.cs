@@ -30,11 +30,11 @@ namespace RobotsTests.entity
 
 			if (target.stats.Def < stats.Atk)
 			{
-				str += "|" + target.Heal(-stats.Atk, type);
+				str += "&" + target.Heal(-stats.Atk, type);
 
 			} else
 			{
-				str += "|No effect";
+				str += "&No effect";
 			}
 
 			return $"{Name} attacks {target.Name}{str}";
@@ -47,6 +47,7 @@ namespace RobotsTests.entity
 		/// <returns></returns>
 		public virtual string Heal(int hp, string type)
 		{
+			int oldHp = stats.Hp;
 			stats.Hp += hp;
 
 			if (hp < 0)
@@ -73,7 +74,7 @@ namespace RobotsTests.entity
 					stats.Hp = 100;
 				}
 
-				return $"{Name} restores {hp} hp";
+				return $"{Name} restores {stats.Hp - oldHp} hp";
 			}
 		}
 

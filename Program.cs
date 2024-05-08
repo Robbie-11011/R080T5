@@ -13,13 +13,20 @@ namespace RobotsTests
 			Player player = new Player();
 			List<Entity> targets = new List<Entity>();
 
-			
+			player.inventory.MaxWeight = 100;
+
+			Consumable minorHealingPotion = new HealingPotion(Util.Rand(1, 10));
+			Util.Println(player.inventory.AddItem(minorHealingPotion));
+
+			Util.Println($"{player.inventory.Items[0].ToString()}");
 
 			for (int i = 0; i < 10; i++) {
 				targets.Add(new Thug(Util.Rand(10, 100), Util.Rand(1, 10), Util.Rand(10)));
 			}
 
 			bool end = false;
+
+
 
 			while (!end)
 			{
@@ -32,7 +39,7 @@ namespace RobotsTests
 
 		public static void Command(Entity player, List<Entity> targets, string input, ref bool end)
 		{
-			Consumable minorHealingPotion = new HealingPotion(Util.Rand(1, 10));
+
 
 			int i, mod;
 
@@ -107,13 +114,25 @@ namespace RobotsTests
 					break;
 
 				case "use item":
-					// Change to selecting from a list of items later
-					// It works
-					Util.SplitPrint(minorHealingPotion.Use(player));
+					i = Util.GetUserIndex(player.inventory.Items);
+					if (i == -1)
+					{
+						break;
+					}
+
+
+					Util.SplitPrint(player.inventory.Items[i].Use(player));
 					break;
 
 				case "get item":
-					Util.Println(minorHealingPotion.ToString());
+					i = Util.GetUserIndex(player.inventory.Items);
+					if (i == -1)
+					{
+						break;
+					}
+
+
+					Util.Println(player.inventory.Items[i].ToString());
 					break;
 
 				default:

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RobotsTests.entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,6 @@ namespace RobotsTests.item
         public bool Stackable { get; set; }
 
         public string ToString();
+        public string Use(Entity target);
     }
 }

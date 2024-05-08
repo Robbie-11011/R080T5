@@ -25,7 +25,7 @@ namespace RobotsTests.entity.player
 			if(Trauma >= 100)
 			{
 				Dead = true;
-				return $"trauma reached 100 | you are dead";
+				return $"trauma reached 100 & you are dead";
 			} else if (Trauma >= 90)
 			{
 				if (type == "force")
@@ -45,6 +45,7 @@ namespace RobotsTests.entity.player
 		/// <returns></returns>
 		public override string Heal(int hp, string type)
 		{
+			int oldHp = stats.Hp;
 			stats.Hp += hp;
 
 			if (hp < 0)
@@ -75,7 +76,7 @@ namespace RobotsTests.entity.player
 					stats.Hp = 100;
 				}
 
-				return $"{Name} restores {hp} hp";
+				return $"{Name} restores {stats.Hp - oldHp} hp";
 			}
 
 			

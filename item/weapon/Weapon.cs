@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RobotsTests.entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,5 +33,7 @@ namespace RobotsTests.item.weapon
 		{
 			return string.Format("{0} | kg: {1} | {2}", Name, Weight, (Equipped) ? "Equipped" : "Unequipped");
 		}
+
+		public abstract string Use(Entity target);
 	}
 }
