@@ -104,7 +104,7 @@ namespace RobotsTests.item.consumable
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return string.Format("{0} | kg: {1} | qty: {2}/{3}", Name, Weight, Qty, StackLimit);
+			return string.Format("{0, -10} | kg: {1, -5} | qty: {2, -5}/{3, -5}", Name, Weight, Qty, StackLimit);
 		}
 	}
 }

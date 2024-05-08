@@ -13,6 +13,7 @@ namespace RobotsTests.entity
 		public Stats stats { get; set; }
 		public Inventory inventory { get; set; }
 		public Equipment equipment { get; set; }
+		public bool Dead { get; set; }
 
 		public Entity()
 		{
@@ -23,13 +24,13 @@ namespace RobotsTests.entity
 			equipment = new Equipment();
 		}
 
-		public string Attack(Entity target)
+		public string Attack(Entity target, string type)
 		{
 			string str = "";
 
 			if (target.stats.Def < stats.Atk)
 			{
-				str += "|" + target.Heal(-stats.Atk);
+				str += "|" + target.Heal(-stats.Atk, type);
 
 			} else
 			{
@@ -44,7 +45,7 @@ namespace RobotsTests.entity
 		/// </summary>
 		/// <param name="hp"></param>
 		/// <returns></returns>
-		public string Heal(int hp)
+		public virtual string Heal(int hp, string type)
 		{
 			stats.Hp += hp;
 
@@ -52,7 +53,7 @@ namespace RobotsTests.entity
 			{
 				if (stats.Hp > 0)
 				{
-					return $"{Name} has taken {hp} dmg";
+					return $"{Name} has taken {-hp} dmg";
 				}
 				else
 				{
